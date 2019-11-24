@@ -1,0 +1,40 @@
+.centerd {
+  margin: auto;
+  padding: 10px;
+  min-width: 340px;
+  width: 50%;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+#image {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.example-container {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+
+}
+
+.ebutton {
+    background-color: lightgreen;
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.dbutton {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}

@@ -1,5 +1,7 @@
 {
   "name": "IonCards",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

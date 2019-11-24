@@ -1,3 +1,41 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<mat-toolbar class="mat-elevation-z4"
+             style="z-index: 100;  position: fixed;">
+    <nav mat-tab-nav-bar style="width: 100% !important;">
+        <a mat-tab-link routerLink="/search" routerLinkActive="active">
+            <mat-icon class="icon" matPrefix>
+                search
+            </mat-icon>
+            Search
+        </a>
+        <a mat-tab-link routerLink="/add-card" routerLinkActive="active">
+            <mat-icon class="icon" matPrefix>
+                person_add
+            </mat-icon>
+            &nbsp;Add Card
+        </a>
+        <a mat-tab-link routerLink="/webcam" routerLinkActive="active">
+            <mat-icon class="icon" matPrefix>
+                camera
+            </mat-icon>
+            &nbsp;Scan
+        </a>
+        <a mat-tab-link routerLink="/card" routerLinkActive="active">
+            <mat-icon class="icon" matPrefix>
+                import_contacts
+            </mat-icon>
+            &nbsp;Contacts
+        </a>
+        <a mat-tab-link (click)="openLogin()">
+            <mat-icon class="icon" matPrefix>
+                vpn_key
+            </mat-icon>
+            &nbsp;Credentials
+        </a>
+    </nav>
+</mat-toolbar>
+
+<div class="container">
+    <ion-app>
+        <ion-router-outlet #outlet="outlet"></ion-router-outlet>
+    </ion-app>
+</div>

@@ -1,0 +1,89 @@
+<ion-content><mat-card style="margin-top: 10%;" >
+
+    <mat-card-subtitle>
+        Optional: Use a remote image.
+    </mat-card-subtitle>
+
+    <mat-card-content>
+        <mat-form-field style="width: 55%;">
+            <mat-label>
+                Path (e.g., https://path/card.png).
+            </mat-label>
+            <mat-icon class="icon" matPrefix>
+                add_a_photo
+            </mat-icon>
+            <input matInput name="image" #image
+                   (keyup.enter)="setImage(image.value)">
+        </mat-form-field>&nbsp;
+        <button mat-button color="primary"
+                name="image"
+                (click)="setImage(image.value)">
+           <mat-icon class="icon" matPrefix>
+               add_a_photo
+           </mat-icon>
+           Submit
+        </button>
+    </mat-card-content>
+
+</mat-card>
+
+<div class="example-container centerd">
+
+    <button mat-button class="mat-elevation-z1 example-container"
+            id="toggle" (click)="toggleCamera()">
+        Toggle Camera
+    </button>
+
+    <mat-card class="example-container" id="scanner"
+              style="margin-top: 5%;">
+        <img [src]="currentImage" class="example-container" *ngIf="currentImage">
+        <br>
+        <button mat-button class="mat-elevation-z1 example-container centerd"
+                id="snap" (click)="takePicture()">
+        <mat-icon>
+            add_photo_alternate
+        </mat-icon>
+         Snap Photo
+        </button>
+        <canvas #canvas id="canvas"
+                width="640" height="480"
+                style="display: none;">
+        </canvas>
+        <img style="border-radius: 5px; border: 1px solid #ccc;"
+             *ngIf="photo" src="{{photo.src}}">
+        <br>
+        <button mat-button class="mat-elevation-z1 example-container centerd"
+                id="add" (click)="imgService.navAdd()">
+            <mat-icon>add_photo_alternate</mat-icon>
+             Add Page
+        </button>
+    <br>
+    </mat-card>
+
+    <div style="display: none;" >
+        <mat-card class="example-container" *ngIf="imgService.localImg"
+                  style="margin-top: 5%;">
+            <img [src]="imgService.localImg"
+                 style="border-radius: 5px; border: 1px solid #ccc;"
+                 id="image"/>
+            <br>
+            <button mat-button class="mat-elevation-z1 example-container"
+                    (click)="imgService.convertToBase64();"
+                    id="convert">
+                Scan Local
+          </button>
+        </mat-card>
+    </div>
+
+    <mat-card class="example-container"
+                *ngIf="imgService.remoteImg"
+                style="margin-top: 5%;">
+        <img class="example-card" [src]="imgService.remoteImg"
+                 id="image"/>
+        <br>
+        <button mat-button class="mat-elevation-z1 example-container" (click)="imgService.scanCard('s')">
+            Scan Remote
+        </button>
+    </mat-card>
+</div>
+</ion-content>

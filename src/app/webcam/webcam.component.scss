@@ -1,0 +1,29 @@
+#webcam {
+    text-align: center;
+}
+
+.example-container {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+.centerd {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-card {
+  max-width: 480px;
+}

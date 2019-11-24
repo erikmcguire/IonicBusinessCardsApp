@@ -1,0 +1,170 @@
+<ion-content><mat-card *ngIf="editMode" class="centerd example-container" style="margin-top: 10%;">
+    <mat-card-content>
+        <form  #f="ngForm" class="example-form">
+            <mat-form-field>
+                <input matInput name="firstName" id="firstName" placeholder="{{getValue(myCard.firstName, 'First Name')}}" #firstName>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="lastName" id="lastName" placeholder="{{getValue(myCard.lastName, 'Last Name')}}" #lastName>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="organization" id="organization" placeholder="{{getValue(myCard.organization, 'Organization')}}" #organization>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="position" id="position" placeholder="{{getValue(myCard.position, 'Position')}}" #position>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="email" id="email" placeholder="{{getValue(myCard.email, 'Email')}}"  #email>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="phone" id="phone" placeholder="{{getValue(myCard.phone, 'Phone')}}" #phone>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="address" id="address" placeholder="{{getValue(myCard.address, 'Address')}}" #address>
+            </mat-form-field>
+            <div class="form-group">
+                <div class="clearfix">
+                <button mat-button
+                      class="btn btn-primary"
+                      style="float: right; margin-right: 10px;"
+                      [disabled]="!f.valid"
+                      (click)="saveCard(firstName, lastName,
+                                        organization, position,
+                                        email, phone, address)">
+                  <mat-icon class="icon" matPrefix>
+                      edit_attributes
+                  </mat-icon>
+                  Confirm
+                </button>
+                <button mat-button class="btn btn-danger"
+                      type="button"
+                      style="float: right; margin-right: 10px;"
+                      [disabled]="!f.valid"
+                      (click)="cancelEdit()">
+                    <mat-icon class="icon" matPrefix>
+                      cancel
+                    </mat-icon>
+                    Cancel
+                </button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+<div class="example-container centerd">
+    <ul *ngFor="let card of cards | async | reverse"
+        class="col-1-4"
+        style="margin-top: 10%;"
+        (mouseenter)="crd.isActive = !crd.isActive"
+        (mouseleave)="crd.isActive = !crd.isActive"
+        #crd>
+    <br>
+    <mat-card *ngIf="saved"
+              [ngClass]="{'mat-elevation-z8': crd.isActive && !dbhover && !ebhover}"
+              class="example-container">
+        <mat-card-content>
+            <img mat-card-image src="{{displayCardImg(card)}}" id="image"/>
+        <mat-list>
+            <mat-list-item>
+                <h4 matLine>
+                    First Name
+                </h4>
+                <p matLine>
+                    {{card.firstName}}
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h4 matLine>
+                    Last Name
+                </h4>
+                <p matLine>
+                    {{card.lastName}}
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h4 matLine>
+                    Organization
+                </h4>
+                <p matLine>
+                    {{card.organization}}
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <h4 matLine>
+                    Position
+                </h4>
+                <p matLine>
+                    {{card.position}}
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <mat-icon matListIcon>
+                    contact_mail
+                </mat-icon>
+                <h4 matLine>
+                    Email
+                </h4>
+                <p matLine>
+                    {{card.email}}
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <mat-icon matListIcon>
+                    contact_phone
+                </mat-icon>
+                <h4 matLine>
+                    Phone
+                </h4>
+                <p matLine>
+                    {{card.phone}}
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <mat-icon matListIcon>
+                    house
+                </mat-icon>
+                <h4 matLine>
+                    Address
+                </h4>
+                <p matLine>
+                    {{card.address}}
+                </p>
+            </mat-list-item>
+        </mat-list>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <div class="clearfix" *ngIf="!editMode" >
+        <button mat-raised-button
+                color="warn"
+                mat-button (mouseover)="dbhover = true"
+                class="dbutton"
+                (mouseleave)="dbhover = false"
+                [ngClass]="{'mat-elevation-z6': dbhover}"
+                (click)="deleteCard(card)">
+            <mat-icon class="icon" matPrefix>
+                delete
+            </mat-icon>
+            Delete
+        </button>
+        <button mat-raised-button
+                (mouseover)="ebhover = true"
+                class="ebutton"
+                (mouseleave)="ebhover = false"
+                [ngClass]="{'mat-elevation-z6': ebhover}"
+                (click)="edit(card)">
+            <mat-icon class="icon" matPrefix>
+                edit
+            </mat-icon>
+             Edit
+        </button>
+    </div>
+    </ul>
+</div>
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-content><mat-card style="position: fixed; z-index: 1;
+                 margin-top: 5%; width: 70%">
+    <mat-form-field style="width: 50%;">
+        <mat-icon class="icon" matPrefix>
+            search
+        </mat-icon>
+        <input matInput name="search" placeholder="{{placeholder}}"
+               #search (keyup.enter)="searchCards(search.value)">
+    </mat-form-field>&nbsp;
+    <button mat-button color="primary" name="search"
+            (click)="searchCards(search.value)">
+        <mat-icon class="icon" matPrefix>
+            input
+        </mat-icon>
+        Submit
+   </button>
+   <br>
+   <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group" >
+        <mat-radio-button class="example-radio-button"
+                       *ngFor="let st of stypes"
+                       (change)="changePH(st); toggleSearch(st)"
+                       [value]="st">
+            {{st}}&nbsp;
+        </mat-radio-button>
+    </mat-radio-group>
+</mat-card>
+<br>
+<div class="example-container centerd"
+     *ngIf="showResults" style="margin-top: 20%;">
+    <ul *ngFor="let card of cards | async | reverse" class="col-1-4">
+    <br>
+        <mat-card>
+            <mat-card-content>
+            <img mat-card-image src="{{displayCardImg(card)}}" id="image"/>
+            <mat-list>
+                <mat-list-item>
+                    First Name: {{card.firstName}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    Last Name: {{card.lastName}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    Organization: {{card.organization}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    Position: {{card.position}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <mat-icon class="icon" matPrefix>
+                        email
+                    </mat-icon>
+                    &nbsp; Email: {{card.email}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <mat-icon class="icon" matPrefix>
+                        phone
+                    </mat-icon>
+                    &nbsp; Phone: {{card.phone}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <mat-icon class="icon" matPrefix>
+                        house
+                    </mat-icon>
+                    &nbsp; Address: {{card.address}}
+                </mat-list-item>
+            </mat-list>
+            </mat-card-content>
+        </mat-card>
+    <br>
+    </ul>
+</div>
+</ion-content>
